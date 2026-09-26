@@ -2,7 +2,7 @@ import WorkoutCard from "@/components/shared/workOutCard";
 
 const getWorkoutCard = async () => {
   try {
-    const res = await fetch("https://api.abcz.workers.dev/api/fitlog", {
+    const res = await fetch("https://api.api-store.workers.dev/api/fitlog", {
       next: { revalidate: 60 },
     });
 
