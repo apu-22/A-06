@@ -8,7 +8,10 @@ export default function Navbar({ planCount = 0, savedCount = 0 }) {
   const pathname = usePathname();
 
   const isWorkouts = pathname === "/" || pathname === "/workouts";
-  const isMyPlan = pathname === "/my-plan" || pathname === "/plan";
+  const isMyPlan =
+    pathname === "/myplan" ||
+    pathname === "/my-plan" ||
+    pathname === "/plan";
 
   return (
     <header className="w-full bg-[#0a0a0a] border-b border-zinc-900 sticky top-0 z-50">
@@ -41,7 +44,7 @@ export default function Navbar({ planCount = 0, savedCount = 0 }) {
             Workouts
           </Link>
           <Link
-            href="/my-plan"
+            href="/myplan"
             className={`px-4 py-1.5 rounded-full text-sm font-semibold transition-colors ${
               isMyPlan
                 ? "bg-[#19270e] text-[#a3e635]"
@@ -55,7 +58,7 @@ export default function Navbar({ planCount = 0, savedCount = 0 }) {
         {/* Right: Plan & Saved Counters */}
         <div className="flex items-center gap-5 sm:gap-6">
           <Link
-            href="/my-plan"
+            href="/myplan"
             className="flex items-center gap-2 text-sm font-medium text-zinc-300 hover:text-white transition-colors"
           >
             <span>Plan</span>
@@ -65,7 +68,7 @@ export default function Navbar({ planCount = 0, savedCount = 0 }) {
           </Link>
 
           <Link
-            href="/saved"
+            href="/myplan"
             className="flex items-center gap-2 text-sm font-medium text-zinc-300 hover:text-white transition-colors"
           >
             <span>Saved</span>
