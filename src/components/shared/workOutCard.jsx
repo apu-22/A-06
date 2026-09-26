@@ -1,8 +1,12 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function WorkoutCard({ item }) {
   return (
-    <div className="group relative rounded-2xl bg-[#111317] border border-zinc-800/80 overflow-hidden hover:border-zinc-700/90 transition-all duration-300 flex flex-col shadow-lg">
+    <Link
+      href={`/workouts/${item.id}`}
+      className="group relative rounded-2xl bg-[#111317] border border-zinc-800/80 overflow-hidden hover:border-zinc-700/90 transition-all duration-300 flex flex-col shadow-lg cursor-pointer"
+    >
       {/* Exercise Image */}
       <div className="relative w-full aspect-[16/10] overflow-hidden bg-zinc-900">
         <Image
@@ -100,6 +104,6 @@ export default function WorkoutCard({ item }) {
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
