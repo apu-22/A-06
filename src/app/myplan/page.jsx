@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 
 export default function MyplanPage() {
   const [activeTab, setActiveTab] = useState("today"); // "today" | "saved"
-  const [sortBy, setSortBy] = useState("");
+  const [sortBy, setSortBy] = useState("duration");
   const [loading, setLoading] = useState(true);
 
   const { plan = [], setPlan, saved = [], setSaved } = useContext(WorkoutContext);
@@ -167,7 +167,6 @@ export default function MyplanPage() {
                 onChange={(e) => setSortBy(e.target.value)}
                 className="appearance-none rounded-xl bg-[#111317] border border-zinc-800 pl-3.5 pr-8 py-2 text-xs sm:text-sm font-semibold text-white focus:outline-none focus:border-zinc-600 cursor-pointer"
               >
-                <option value="">Select</option>
                 <option value="duration">Duration</option>
                 <option value="calories">Calories</option>
                 <option value="rating">Rating</option>

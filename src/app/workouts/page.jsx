@@ -22,7 +22,7 @@ export default async function FitlogLibrary() {
   const fitlogLibrary = await getWorkoutCard();
 
   return (
-    <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+    <section id="library" className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 scroll-mt-20">
       {/* Section Header */}
       <div className="mb-8">
         <h2 className="text-3xl sm:text-4xl font-black tracking-tight text-white uppercase">

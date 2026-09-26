@@ -1,7 +1,16 @@
+"use client";
+
 import Image from "next/image";
-import Link from "next/link";
 
 export default function Banner() {
+    const handleScrollToLibrary = (e) => {
+        e.preventDefault();
+        const element = document.getElementById("library");
+        if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+            window.history.pushState(null, "", "#library");
+        }
+    };
     return (
         <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
             <div className="relative overflow-hidden rounded-3xl bg-[#111317] border border-zinc-800/80 px-6 py-12 sm:px-12 sm:py-16 lg:px-16 lg:py-20 shadow-2xl">
@@ -21,12 +30,27 @@ export default function Banner() {
                             into today&apos;s plan, and watch the week&apos;s work add up.
                         </p>
                         
-                        <Link
-                            href="#workouts"
-                            className="inline-flex items-center justify-center px-7 py-3.5 rounded-xl bg-[#ccff00] hover:bg-[#b5e600] text-black font-extrabold text-xs sm:text-sm uppercase tracking-wider transition-all duration-200 shadow-md hover:shadow-lime-500/20 active:scale-95 cursor-pointer"
+                        <a
+                            href="#library"
+                            onClick={handleScrollToLibrary}
+                            className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-[#ccff00] hover:bg-[#b5e600] text-black font-extrabold text-xs sm:text-sm uppercase tracking-wider transition-all duration-200 shadow-md hover:shadow-lime-500/20 active:scale-95 cursor-pointer"
                         >
-                            BROWSE WORKOUTS
-                        </Link>
+                            <span>BROWSE WORKOUTS</span>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="w-4 h-4"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2.5"
+                                    d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                                />
+                            </svg>
+                        </a>
                     </div>
 
                     {/* Right Column: Hero Image */}
