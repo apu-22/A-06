@@ -1,22 +1,22 @@
 "use client";
 
+import React, { useContext } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { WorkoutContext } from "@/context/WorkoutContext";
 
-export default function Navbar({ planCount = 0, savedCount = 0 }) {
+export default function Navbar() {
   const pathname = usePathname();
+  const { plan = [], saved = [] } = useContext(WorkoutContext);
 
   const isWorkouts = pathname === "/" || pathname === "/workouts";
   const isMyPlan =
-    pathname === "/myplan" ||
-    pathname === "/my-plan" ||
-    pathname === "/plan";
+    pathname === "/myplan";
 
   return (
     <header className="w-full bg-[#0a0a0a] border-b border-zinc-900 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-8 h-16 flex items-center justify-between">
-        {/* Left: Brand Logo & Title */}
         <Link href="/" className="flex items-center gap-2.5 group">
           <Image
             src="/logo.png"
@@ -31,7 +31,6 @@ export default function Navbar({ planCount = 0, savedCount = 0 }) {
           </span>
         </Link>
 
-        {/* Center: Navigation Links */}
         <nav className="flex items-center gap-3">
           <Link
             href="/"
@@ -55,7 +54,6 @@ export default function Navbar({ planCount = 0, savedCount = 0 }) {
           </Link>
         </nav>
 
-        {/* Right: Plan & Saved Counters */}
         <div className="flex items-center gap-5 sm:gap-6">
           <Link
             href="/myplan"
@@ -63,7 +61,7 @@ export default function Navbar({ planCount = 0, savedCount = 0 }) {
           >
             <span>Plan</span>
             <span className="w-5 h-5 rounded-full bg-[#a3e635] text-black font-bold text-xs flex items-center justify-center">
-              {planCount}
+              {plan.length}
             </span>
           </Link>
 
@@ -73,7 +71,7 @@ export default function Navbar({ planCount = 0, savedCount = 0 }) {
           >
             <span>Saved</span>
             <span className="w-5 h-5 rounded-full bg-[#1c1c1c] border border-zinc-700/80 text-zinc-300 text-xs font-semibold flex items-center justify-center">
-              {savedCount}
+              {saved.length}
             </span>
           </Link>
         </div>

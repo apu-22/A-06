@@ -4,6 +4,7 @@ import { WorkoutContext } from "@/context/WorkoutContext";
 import React, { useContext, useState, useEffect } from "react";
 import Link from "next/link";
 import WorkoutList from "@/components/myplan/WorkoutList";
+import { toast } from "react-toastify";
 
 export default function MyplanPage() {
   const [activeTab, setActiveTab] = useState("today"); // "today" | "saved"
@@ -49,22 +50,38 @@ export default function MyplanPage() {
 
   // Action handlers
   const handleRemove = (id, index) => {
+    const targetItem = rawItems.find((item, i) => item.id === id || i === index);
+    const itemName = targetItem?.name || "Workout";
+
     if (activeTab === "today") {
       setPlan((prev) => prev.filter((item, i) => item.id !== id && i !== index));
+      toast.info(`"${itemName}" removed from Today's Plan`);
     } else {
       setSaved((prev) => prev.filter((item, i) => item.id !== id && i !== index));
+      toast.info(`"${itemName}" removed from Saved workouts`);
     }
   };
 
   const handleToggleDone = (id, index) => {
+    let nowDone = false;
+    let workoutName = "Workout";
+
     setPlan((prev) =>
       prev.map((item, i) => {
         if (item.id === id || i === index) {
-          return { ...item, done: !item.done };
+          nowDone = !item.done;
+          workoutName = item.name || workoutName;
+          return { ...item, done: nowDone };
         }
         return item;
       })
     );
+
+    if (nowDone) {
+      toast.success(`"${workoutName}" marked as done! 🎉`);
+    } else {
+      toast.info(`"${workoutName}" marked as not done`);
+    }
   };
 
   return (

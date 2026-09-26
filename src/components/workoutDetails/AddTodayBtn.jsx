@@ -2,6 +2,7 @@
 
 import React, { useContext } from 'react'
 import { WorkoutContext } from '@/context/WorkoutContext'
+import { toast } from 'react-toastify'
 
 export default function AddTodayBtn({ workout }) {
 
@@ -9,7 +10,13 @@ export default function AddTodayBtn({ workout }) {
     const { plan, setPlan } = AddTodayProvider;
 
     const handleAddTodayPlan = () => {
+        const isAlreadyAdded = plan.some((item) => item.id === workout.id);
+        if (isAlreadyAdded) {
+            toast.warning(`"${workout.name}" is already added to Today's Plan!`);
+            return;
+        }
         setPlan((prev) => [...prev, workout]);
+        toast.success(`"${workout.name}" added to Today's Plan!`);
     };
 
     return (

@@ -2,11 +2,18 @@
 
 import React, { useContext } from 'react'
 import { WorkoutContext } from '@/context/WorkoutContext'
+import { toast } from 'react-toastify'
 
 export default function SaveForLaterBtn({ workout }) {
     const { saved, setSaved } = useContext(WorkoutContext);
     const handleSaveForLater = () => {
+        const isAlreadySaved = saved.some((item) => item.id === workout.id);
+        if (isAlreadySaved) {
+            toast.warning(`"${workout.name}" is already saved for later!`);
+            return;
+        }
         setSaved((prev) => [...prev, workout]);
+        toast.info(`"${workout.name}" saved for later!`);
     };
     return (
         <button
